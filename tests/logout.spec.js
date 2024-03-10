@@ -11,5 +11,5 @@ test('test', async ({ page }) => {
   await page.getByTestId('login-button').click();
   await page.getByTestId('logout-button').click();
   await expect(page.getByRole('heading', {name: 'Wersja demonstracyjna serwisu'} )).toBeVisible();
-
+  await expect(page.getByRole('heading', {name: 'Wersja demonstracyjna serwisu'} )).toHaveText('Wersja demonstracyjna serwisu Demobank');  
 });
