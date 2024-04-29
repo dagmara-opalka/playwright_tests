@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 
 
 test.describe("Dashboard test", () => {
-  test("quick payment with correct data", async ({ page }) => {
+  test.only("quick payment with correct data", async ({ page }) => {
     //Arrange
     const url = "https://demo-bank.vercel.app/";
     const userID = "testerLO";
@@ -12,7 +12,7 @@ test.describe("Dashboard test", () => {
     const reciverID = "2";
     const transferAmount = "120";
     const transferTitle = "Zwrot";
-    const expectedTransferReceiver = 'Chuck Demobankowy'
+    const expectedTransferReceiver = 'Chuck Demobankowy!'
     //Act
     await page.goto(url);
     await page.getByTestId("login-input").fill(userID);
