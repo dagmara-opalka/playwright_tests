@@ -4,7 +4,7 @@ import { url } from "inspector";
 
 
 test.describe("Dashboard test", () => {
-  test.only("quick payment with correct data", async ({ page }) => {
+  test("quick payment with correct data", async ({ page }) => {
     //Arrange
     const url = "https://demo-bank.vercel.app/";
     const userID = "testerLO";

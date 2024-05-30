@@ -2,10 +2,19 @@ import { expect, test } from "@playwright/test";
 
 
 test.describe('User login to Demobank', () => {
+  const url = "https://demo-bank.vercel.app/";
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto(url);
+  
+  });
+
+  
+
   test("login with correct credentials", async ({ page }) => {
 
     //Arrange
-const url = "https://demo-bank.vercel.app/";
+
 const userPassword = "haslo123";
 const userID = "testerLO";
 const expectedUserName = "user-name";
@@ -32,6 +41,6 @@ const expectedUserName = "user-name";
     await page.getByTestId('password-input').blur();
     await expect(page.getByTestId('error-login-password')).toHaveText('hasło ma min. 8 znaków');
   });
-  });
+  
 
-
+})
