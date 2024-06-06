@@ -1,25 +1,27 @@
 import { expect, test } from "@playwright/test";
-import { url } from "inspector";
-
-
 
 test.describe("Dashboard test", () => {
-  test("quick payment with correct data", async ({ page }) => {
-    //Arrange
-    const url = "https://demo-bank.vercel.app/";
-    const userID = "testerLO";
-    const userPassword = "12345678";
-    const loginInput = "login-input";
-    const passwordInput = "password-input";
-    const loginButton = "login-button";
+  //Arrange
+  const userID = "testerLO";
+  const userPassword = "12345678";
+  const loginInput = "login-input";
+  const passwordInput = "password-input";
+  const loginButton = "login-button";
 
-    const reciverID = "2";
-    const transferAmount = "120";
-    const transferTitle = "Zwrot";
-    const expectedTransferReceiver = 'Chuck Demobankowy!'
-    //Act
+  const reciverID = "2";
+  const transferAmount = "120";
+  const transferTitle = "Zwrot";
+  const expectedTransferReceiver = "Chuck Demobankowy";
+
+  test.beforeEach(async ({ page }) => {
+    const url = "https://demo-bank.vercel.app/";
     await page.goto(url);
-    await page.getByTestId(loginInput ).fill(userID);
+  });
+  test("quick payment with correct data", async ({ page }) => {
+    
+    //Act
+
+    await page.getByTestId(loginInput).fill(userID);
     await page.getByTestId(passwordInput).fill(userPassword);
     await page.getByTestId(loginButton).click();
     await page.locator("#widget_1_transfer_receiver").selectOption(reciverID);
@@ -33,14 +35,15 @@ test.describe("Dashboard test", () => {
     await page.getByRole("button", { name: "wykonaj" }).click();
     await page.getByTestId("close-button").click();
     //await page.getByRole('link', { name: 'Przelew wykonany! Chuck' }).click();
-    
+
     //Assert
+    await page.pause();
     await expect(page.locator("#show_messages")).toHaveText(
       `Przelew wykonany! ${expectedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}`
     );
   });
   test("sucessful mobile top-up Dagmara", async ({ page }) => {
-    await page.goto(url);
+    await page.pause();
     await page.getByTestId(loginInput).click();
     await page.getByTestId(passwordInput).fill(userID);
     await page.getByTestId("password-input").fill(userPassword);

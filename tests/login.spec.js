@@ -2,9 +2,9 @@ import { expect, test } from "@playwright/test";
 
 
 test.describe('User login to Demobank', () => {
-  const url = "https://demo-bank.vercel.app/";
 
   test.beforeEach(async ({ page }) => {
+    const url = "https://demo-bank.vercel.app/";
     await page.goto(url);
   
   });
