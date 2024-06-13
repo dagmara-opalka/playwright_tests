@@ -4,9 +4,6 @@ test.describe("Dashboard test", () => {
   //Arrange
   const userID = "testerLO";
   const userPassword = "12345678";
-  const loginInput = "login-input";
-  const passwordInput = "password-input";
-  const loginButton = "login-button";
 
   const reciverID = "2";
   const transferAmount = "120";
@@ -15,15 +12,14 @@ test.describe("Dashboard test", () => {
 
   test.beforeEach(async ({ page }) => {
     const url = "https://demo-bank.vercel.app/";
+    
     await page.goto(url);
+    await page.getByTestId("login-input").fill(userID);
+    await page.getByTestId("password-input").fill(userPassword);
+    await page.getByTestId("login-button").click();
   });
   test("quick payment with correct data", async ({ page }) => {
-    
     //Act
-
-    await page.getByTestId(loginInput).fill(userID);
-    await page.getByTestId(passwordInput).fill(userPassword);
-    await page.getByTestId(loginButton).click();
     await page.locator("#widget_1_transfer_receiver").selectOption(reciverID);
     await page.locator("#widget_1_transfer_amount").click();
     await page.locator("#widget_1_transfer_amount").fill(transferAmount);
@@ -43,11 +39,7 @@ test.describe("Dashboard test", () => {
     );
   });
   test("sucessful mobile top-up Dagmara", async ({ page }) => {
-    await page.pause();
-    await page.getByTestId(loginInput).click();
-    await page.getByTestId(passwordInput).fill(userID);
-    await page.getByTestId("password-input").fill(userPassword);
-    await page.getByTestId("login-button").click();
+
     await page.locator("#widget_1_topup_receiver").selectOption("502 xxx xxx");
     await page.locator("#widget_1_topup_amount").click();
     await page.locator("#widget_1_topup_amount").fill("140");
