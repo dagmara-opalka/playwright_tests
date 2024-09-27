@@ -2,8 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Dashboard test", () => {
   //Arrange
-  const userID = "testerLO";
-  const userPassword = "12345678";
+
 
   const reciverID = "2";
   const transferAmount = "120";
@@ -12,8 +11,11 @@ test.describe("Dashboard test", () => {
 
   test.beforeEach(async ({ page }) => {
     const url = "https://demo-bank.vercel.app/";
+    const userID = "testerLO";
+    const userPassword = "12345678";
     
     await page.goto(url);
+
     await page.getByTestId("login-input").fill(userID);
     await page.getByTestId("password-input").fill(userPassword);
     await page.getByTestId("login-button").click();
