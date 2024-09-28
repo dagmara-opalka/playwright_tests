@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "test.test.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:dashboard:headed": "npx playwright test tests/dashboard.spec.js --headed"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

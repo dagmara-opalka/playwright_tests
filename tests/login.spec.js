@@ -11,7 +11,7 @@ test.describe('User login to Demobank', () => {
 
   
 
-  test.only("login with correct credentials", async ({ page }) => {
+  test("login with correct credentials", async ({ page }) => {
 
     //Arrange
 
